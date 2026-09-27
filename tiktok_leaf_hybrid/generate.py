@@ -9,6 +9,7 @@ import re
 import subprocess
 import sys
 import time
+import urllib.error
 import urllib.request
 
 import imageio_ffmpeg
@@ -37,8 +38,11 @@ SHOTS = [
 def call(url, body=None):
     req = urllib.request.Request(url, headers={"x-goog-api-key": KEY, "Content-Type": "application/json"},
                                  data=json.dumps(body).encode() if body else None)
-    with urllib.request.urlopen(req, timeout=120) as r:
-        return r.read() if body is None and "alt=media" in url else json.loads(r.read())
+    try:
+        with urllib.request.urlopen(req, timeout=120) as r:
+            return json.loads(r.read())
+    except urllib.error.HTTPError as e:
+        sys.exit(f"HTTP {e.code} from {url.split('?')[0]}: {e.read().decode()[:1000]}")
 
 
 def generate(out, text, frame):
@@ -50,7 +54,7 @@ def generate(out, text, frame):
     params = {"aspectRatio": "9:16", "durationSeconds": 8, "negativePrompt": NEG}
     if frame:
         data = base64.b64encode(open(os.path.join(HERE, frame), "rb").read()).decode()
-        inst["image"] = {"inlineData": {"mimeType": "image/jpeg", "data": data}}
+        inst["image"] = {"bytesBase64Encoded": data, "mimeType": "image/jpeg"}
         params["personGeneration"] = "allow_adult"
     op = call(f"{BASE}/models/{MODEL}:predictLongRunning", {"instances": [inst], "parameters": params})
     print("started", out, op["name"])
