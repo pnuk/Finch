@@ -20,7 +20,7 @@ KEY = os.environ.get("GEMINI_API_KEY")
 MODEL = os.environ.get("VEO_MODEL", "veo-3.1-generate-preview")
 BASE = "https://generativelanguage.googleapis.com/v1beta"
 FF = imageio_ffmpeg.get_ffmpeg_exe()
-NEG = "phone frame, black borders, push lawn mower, cartoon, CGI look, distorted logos, extra wheels, warped hands, text overlay, watermark"
+NEG = "leaf blower, leaves blown out of the tube, leaves flying away, phone frame, black borders, push lawn mower, cartoon, CGI look, distorted logos, extra wheels, warped hands, text overlay, watermark"
 
 
 def prompt(n):
@@ -29,9 +29,9 @@ def prompt(n):
 
 
 SHOTS = [
-    ("02_mowing.mp4", prompt(2), "frame_robot.jpg"),
-    ("03_handheld.mp4", prompt(3), "frame_vacuum.jpg"),
-    ("04_hybrid.mp4", prompt(4), "frame_hybrid.jpg"),
+    ("02_mowing.mp4", prompt(2), "frame_robot.jpg", None),
+    ("03_handheld.mp4", prompt(3), "frame_hand_start.jpg", "frame_hand_end.jpg"),
+    ("04_hybrid.mp4", prompt(4), "frame_hybrid.jpg", "frame_hybrid_end.jpg"),
 ]
 
 
@@ -45,7 +45,12 @@ def call(url, body=None):
         sys.exit(f"HTTP {e.code} from {url.split('?')[0]}: {e.read().decode()[:1000]}")
 
 
-def generate(out, text, frame):
+def image(name):
+    data = base64.b64encode(open(os.path.join(HERE, name), "rb").read()).decode()
+    return {"bytesBase64Encoded": data, "mimeType": "image/jpeg"}
+
+
+def generate(out, text, frame, last=None):
     path = os.path.join(HERE, out)
     if os.path.exists(path):
         print("skip (exists):", out)
@@ -53,9 +58,10 @@ def generate(out, text, frame):
     inst = {"prompt": text}
     params = {"aspectRatio": "9:16", "durationSeconds": 8, "negativePrompt": NEG}
     if frame:
-        data = base64.b64encode(open(os.path.join(HERE, frame), "rb").read()).decode()
-        inst["image"] = {"bytesBase64Encoded": data, "mimeType": "image/jpeg"}
+        inst["image"] = image(frame)
         params["personGeneration"] = "allow_adult"
+    if last:
+        inst["lastFrame"] = image(last)
     op = call(f"{BASE}/models/{MODEL}:predictLongRunning", {"instances": [inst], "parameters": params})
     print("started", out, op["name"])
     while not op.get("done"):

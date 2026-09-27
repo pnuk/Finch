@@ -6,8 +6,8 @@ Vertical 9:16, ~26 s total. 4 shots:
 |---|------|--------|--------|
 | 1 | Title card: "THE BEST LEAF CLEANUP SOLUTION" / "Robot mower + leaf vacuum = HYBRID" | 3.5 s | `01_title.mp4` (already rendered from the photo) |
 | 2 | Robot mower mowing the lawn | 8 s | Veo, image-to-video from `frame_robot.jpg` |
-| 3 | Person vacuuming leaves with the handheld leaf vacuum | 8 s | Veo, image-to-video from `frame_vacuum.jpg` |
-| 4 | Robot mower drives around with the leaf vacuum strapped on its roof, sucking up leaves | 8 s | Veo, image-to-video from `frame_hybrid.jpg` (photo edited with Gemini image model) |
+| 3 | Person vacuuming leaves with the handheld leaf vacuum | 8 s | Veo, first+last frame: `frame_hand_start.jpg` → `frame_hand_end.jpg` (edited with `edit_frame.py`) |
+| 4 | Robot mower drives around with the leaf vacuum strapped on its roof, sucking up leaves | 8 s | Veo, first+last frame: `frame_hybrid.jpg` → `frame_hybrid_end.jpg` (edited with Gemini image model) |
 
 Model: `veo-3.1-generate-preview`, aspectRatio `9:16`, durationSeconds `8`.
 
@@ -25,35 +25,39 @@ Sound: quiet electric motor hum, soft grass cutting, birds in the background.
 No text, no music, no subtitles.
 ```
 
-## Shot 3 — person with leaf vacuum (image-to-video, first frame = `frame_vacuum.jpg`)
+## Shot 3 — person with leaf vacuum (first frame = `frame_hand_start.jpg`, last frame = `frame_hand_end.jpg`)
 
 ```
 Vertical smartphone video, natural overcast autumn daylight, same garden.
-An adult's hands pick up the teal-and-black cordless leaf vacuum lying on the
-lawn, put the shoulder strap on, and start vacuuming fallen yellow and brown
-leaves from the grass. The leaves get sucked into the black tube one after
-another and the grey collection bag slowly fills up. Only hands, arms and torso
-are visible, no face. Realistic, slightly tired body language.
-Sound: loud whirring leaf vacuum motor, leaves rustling and being sucked in.
+A person holds the teal cordless leaf VACUUM (suction mode, NOT a blower)
+with the nozzle of the black tube just above the pile of autumn leaves. The
+vacuum pulls the leaves IN: leaves lift off the grass, fly toward the nozzle
+and disappear inside the tube, one after another, the pile gets smaller and
+smaller. The air flows INTO the tube. Nothing comes out of the tube; no leaves
+are blown away or scattered. The grey collection bag inflates and fills up
+with leaves until the grass under the nozzle is clean. Only arm and hand
+visible. Realistic, handheld phone footage.
+Sound: loud vacuum motor, leaves rustling and being sucked into the tube.
 No text, no music, no subtitles.
 ```
 
-## Shot 4 — the "hybrid" (image-to-video, first frame = `frame_hybrid.jpg`, made by `make_hybrid_frame.py`)
+## Shot 4 — the "hybrid" (first frame = `frame_hybrid.jpg`, last frame = `frame_hybrid_end.jpg`)
 
 ```
 Vertical smartphone video, natural overcast autumn daylight, same garden.
-The robotic lawn mower with the teal leaf vacuum strapped on its roof starts
-driving slowly and confidently forward across the lawn. The leaf vacuum is
-running: the fallen yellow and brown leaves in front of the black tube get
-sucked into the nozzle one after another, the grey collection bag puffs up.
-The robot makes a neat slow turn and keeps going. Camera stays steady and
-follows it a little. Comedic, deadpan, looks like a real homemade garden hack
-filmed by the owner on a phone. No people.
-Sound: robot mower hum plus a loud leaf vacuum whirr, leaves being sucked in.
+The robotic lawn mower with the teal leaf VACUUM strapped on its roof slowly
+creeps forward and back over the leaves. The vacuum is in suction mode, NOT a
+blower: the fallen yellow and brown leaves in front of the black tube lift off
+the grass and are pulled INTO the nozzle, disappearing inside the tube one
+after another. The air flows INTO the tube. Nothing comes out of the tube; no
+leaves are blown away or scattered. The grey collection bag inflates and gets
+stuffed with leaves, the lawn in front of the nozzle becomes clean. Camera is
+steady. Comedic, deadpan homemade garden hack filmed on a phone. No people.
+Sound: robot mower hum plus a loud vacuum whirr, leaves being sucked in.
 No text, no music, no subtitles, no phone frame or borders.
 ```
 
-Negative prompt (all shots): `cartoon, CGI look, distorted logos, extra wheels, warped hands, text overlay, watermark`
+Negative prompt (all shots): `leaf blower, leaves blown out of the tube, leaves flying away, phone frame, black borders, push lawn mower, cartoon, CGI look, distorted logos, extra wheels, warped hands, text overlay, watermark`
 
 ---
 
