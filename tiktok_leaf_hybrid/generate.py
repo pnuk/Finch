@@ -101,7 +101,7 @@ def assemble():
     fl.append("".join(f"[v{i}][a{i}]" for i in range(len(clips))) + f"concat=n={len(clips)}:v=1:a=1[v][a]")
     out = os.path.join(HERE, "leaf_hybrid_tiktok.mp4")
     subprocess.run([FF, "-y", "-loglevel", "error", *args, "-filter_complex", ";".join(fl), "-map", "[v]",
-                    "-map", "[a]", "-c:v", "libx264", "-crf", "20", "-pix_fmt", "yuv420p", "-c:a", "aac",
+                    "-map", "[a]", "-c:v", "libx264", "-crf", "24", "-preset", "slow", "-pix_fmt", "yuv420p", "-c:a", "aac",
                     "-movflags", "+faststart", out], check=True)
     print("final:", out)
 
