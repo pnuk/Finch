@@ -45,15 +45,17 @@ No text, no music, no subtitles.
 
 ```
 Vertical smartphone video, natural overcast autumn daylight, same garden.
-The robotic lawn mower with the teal leaf VACUUM strapped on its roof slowly
-creeps forward and back over the leaves. The vacuum is in suction mode, NOT a
-blower: the fallen yellow and brown leaves in front of the black tube lift off
-the grass and are pulled INTO the nozzle, disappearing inside the tube one
-after another. The air flows INTO the tube. Nothing comes out of the tube; no
-leaves are blown away or scattered. The grey collection bag inflates and gets
-stuffed with leaves, the lawn in front of the nozzle becomes clean. Camera is
-steady. Comedic, deadpan homemade garden hack filmed on a phone. No people.
-Sound: robot mower hum plus a loud vacuum whirr, leaves being sucked in.
+The robotic lawn mower CARRIES the teal leaf vacuum strapped on its roof and
+DRIVES around the lawn on its own for the whole 8 seconds: its wheels turn, it
+rolls forward across the grass, makes a smooth wide turn and arrives at the
+final position closer to the camera. The vacuum rides on top of the moving
+robot, wobbling slightly with the bumps. The vacuum is in suction mode, NOT a
+blower: leaves on the grass in front of the moving tube lift off and are pulled
+INTO the nozzle and disappear inside; nothing comes out of the tube and no
+leaves are blown away. Behind the robot it leaves a clean stripe of green
+grass, and the grey bag gets fuller. Camera is steady, slightly panning to
+follow. Comedic, deadpan homemade garden hack filmed on a phone. No people.
+Sound: robot mower motor and wheels on grass plus a loud vacuum whirr.
 No text, no music, no subtitles, no phone frame or borders.
 ```
 
